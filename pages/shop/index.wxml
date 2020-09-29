@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="title">
+    <view class="list">
+      门店列表
+      <view class="ico"></view>
+    </view>
+  </view>
+  <view wx:if="{{list.length}}" class="shop">
+    <view class="list" wx:for="{{list}}" wx:key="this" bindtap="{{item.status.value==1?'shop':'shopStop'}}" data-index="{{index}}">
+      <image src="{{item.logo.file_path}}"></image>
+      <view class="ico">
+        <text>{{item.shop_name}}</text>
+        <view class="status {{item.status.value==1?'color1':'color2'}}">{{item.status.text}}</view>
+        <text class="shop-wz"><text wx:if="{{food_mode==3 && item.range==1}}" class="range col-m">派送超区</text>{{item.location?item.location:'未知距离'}}</text>
+      </view>
+      <view class="ico address">{{item.address}}</view>
+    </view>
+  </view>
+  <view wx:else class="">
+    <view class="yoshop-notcont">
+      <text class="iconfont"></text>
+      <text class="cont">亲，暂无门店可选哦</text>
+    </view>
+  </view>
+</view>
+<!-- 技术支持 -->
+<view class="jishu m-top20">
+  <text class="ico iconfont iconkaibin"></text>
+  <view class="text">{{copyright}}</view>
+</view>

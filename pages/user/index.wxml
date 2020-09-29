@@ -1,0 +1,172 @@
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user">
+    <view class="user-header" style="">
+      <!-- 已登录 -->
+      <view wx:if="{{ isLogin }}" class="user-header-cont">
+        <view class="user-header-avatar">
+          <open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+        </view>
+        <open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+        <view wx:if="{{!userInfo.mobile}}">
+          <button class="level-open" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+            开通会员
+          </button>
+        </view>
+        <view class="level" wx:else>
+          <text class="menus-item__name f-30">{{userInfo.grade.name}}</text>
+          <text class="iconfont icongengduo f-26 col-7"></text>
+        </view>
+      </view>
+      <!-- 未登录 -->
+      <view wx:else class="user-header-cont" catchtap="onLogin">
+        <view class="user-header-avatar">
+          <image src="/images/default-avatar.png"></image>
+        </view>
+        <view class="user-header-cont-name">点击登录</view>
+      </view>
+    </view>
+    <!-- 我的导航栏 -->
+    <view class="my-navbar">
+      <view class="my-navbar-footer dis-flex m-top10">
+        <view class="my-navbar-item flex-box r-border">
+          <form bindsubmit="onTargetMenus" data-url="user/wallet/index">
+            <button formType="submit" class="btn-normal">
+              <text class="my-navbar__name">余额</text>
+              <text class="my-navbar__icon">{{userInfo.wallet}}</text>
+            </button>
+          </form>
+        </view>
+        <view class="my-navbar-item flex-box r-border">
+          <form bindsubmit="onTargetMenus" data-url="user/dealer/index">
+            <button formType="submit" class="btn-normal">
+              <text class="my-navbar__name">佣金</text>
+              <text class="my-navbar__icon">{{userInfo.commission}}</text>
+            </button>
+          </form>
+        </view>
+        <view class="my-navbar-item flex-box">
+          <text class="my-navbar__name">积分</text>
+          <text class="my-navbar__icon">{{userInfo.score}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 订单导航栏 -->
+  <view class="order-navbar">
+    <view class="order-navbar-header dis-flex" bindtap="onTargetOrder" data-type="0">
+      <text class="f-30">我的订单</text>
+      <view class="dis-flex flex-y-center">
+        <text class="f-24 col-6">全部订单</text>
+        <text class="iconfont icongengduo user-orderJtou"></text>
+      </view>
+    </view>
+    <view class="order-navbar-footer dis-flex m-top10">
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetOrder" data-type="10001">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-canzhuo col-l"></text>
+            <text class="order-navbar__name">餐桌订单</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetOrder" data-type="2">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-mendianziqu col-l"></text>
+            <text class="order-navbar__name">自取订单</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetOrder" data-type="3">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-waimai col-l"></text>
+            <text class="order-navbar__name">外卖订单</text>
+          </button>
+        </form>
+      </view>
+    </view>
+  </view>
+  <!-- 我的服务 -->
+  <view class="order-navbar m-top20">
+    <view class="order-navbar-header dis-flex">
+      <text class="f-30">我的服务</text>
+    </view>
+    <view class="order-navbar-footer dis-flex m-top10">
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetMenus" data-url="user/activity/index">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-wodeyouhuijuan col-6"></text>
+            <text class="order-navbar__name">优惠卷</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetMenus" data-url="address/index">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-wodedizhi col-6"></text>
+            <text class="order-navbar__name">我的地址</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetMenus" data-url="user/wallet/index">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-wodeqianbao col-6"></text>
+            <text class="order-navbar__name">我的钱包</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="callMe" data-url="" report-submit="true">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-lianxi col-6"></text>
+            <text class="order-navbar__name">联系商家</text>
+          </button>
+        </form>
+      </view>
+    </view>
+    <view class="order-navbar-footer dis-flex">
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="" report-submit="true">
+          <button open-type="openSetting" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-quanxianguanli col-6"></text>
+            <text class="order-navbar__name">权限设置</text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form bindsubmit="onTargetMenus" data-url="user/help/index">
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon iconfont2 icon-bangzhu col-6"></text>
+            <text class="order-navbar__name">帮助文档</text>
+          </button>
+        </form>
+      </view>
+
+      <view class="order-navbar-item flex-box">
+        <form>
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon col-6"></text>
+            <text class="order-navbar__name"></text>
+          </button>
+        </form>
+      </view>
+      <view class="order-navbar-item flex-box">
+        <form>
+          <button formType="submit" class="btn-normal">
+            <text class="order-navbar__icon col-6"></text>
+            <text class="order-navbar__name"></text>
+          </button>
+        </form>
+      </view>
+
+    </view>
+  </view>
+  <!-- 技术支持 -->
+  <view class="jishu m-top20">
+    <text class="ico iconfont iconkaibin"></text>
+    <view class="text">{{copyright}}</view>
+  </view>
+</view>

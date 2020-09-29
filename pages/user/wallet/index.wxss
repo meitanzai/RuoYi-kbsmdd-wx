@@ -1,0 +1,77 @@
+page{
+  background: #fff;
+}
+.body{
+  padding: 0 40rpx;
+}
+.head{
+  padding: 50rpx 0;
+}
+.head-box{
+  height: 200rpx;
+  margin: auto;
+  background: linear-gradient(-113deg, rgb(130, 204, 241), #1196DB);
+  border-radius: 10rpx;
+  box-shadow: rgb(119, 118, 118) 5rpx 5rpx 20rpx 5rpx ;
+}
+.head-box-ico{
+  height: 200rpx;
+  width: 50%;
+  float: left;
+  line-height: 200rpx;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+}
+.body .title{
+  font-size: 30rpx;
+  line-height: 70rpx;
+}
+.plan-box{
+  width: 29%;
+  padding: 15rpx 0;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 10rpx;
+  text-align: center;
+  float: left;
+}
+.plan-box .text{
+  font-size: 25rpx;
+  color: #999;
+}
+.plan-box2{
+  width: 29%;
+  padding: 15rpx 0;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  border: 1rpx solid #1196DB;
+  color:#1196DB;
+  border-radius: 10rpx;
+  text-align: center;
+  float: left;
+}
+.plan-box2 .text{
+  font-size: 25rpx;
+  color: #1196DB;
+}
+.body input{
+  margin-top: 40rpx;
+  height: 40rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ccc;
+}
+.body button{
+  margin-top: 40rpx;
+  background:#1196DB;
+  color: #fff;
+  border: #1196DB;
+}
+.title-list{
+  color: #999;
+  font-size: 22rpx;
+  line-height: 35rpx;
+  vertical-align: middle;
+}

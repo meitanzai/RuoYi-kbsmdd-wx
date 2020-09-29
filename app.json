@@ -1,0 +1,68 @@
+{
+  "pages": [
+		
+		"pages/index/index",
+		"pages/pact/sort",
+		"pages/shop/index",
+		"pages/shop/food",
+    "pages/table/index",
+    "pages/goods/index",
+    "pages/flow/checkout",
+    "pages/user/help/index",
+		"pages/user/wallet/index",
+		"pages/user/activity/index",
+		"pages/user/index",
+    "pages/order/index",
+    "pages/order/detail",
+    "pages/address/index",
+    "pages/address/create",
+    "pages/address/detail",
+		"pages/article/detail",
+		
+		"pages/pact/table",
+    "pages/login/login"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#1196DB",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_on.png"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "订单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order_on.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_on.png"
+      }
+    ],
+    "position": "bottom"
+  },
+	"permission": {
+		"scope.userLocation": {
+			"desc": "用于计算到店距离"
+		}
+	},
+	"navigateToMiniProgramAppIdList": [
+		"wx00c08f3e9e2b3ffb"
+	],
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

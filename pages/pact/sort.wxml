@@ -1,0 +1,16 @@
+<form bindsubmit="formSubmit">
+  <view class="list">
+    <text class="iconfont iconyonghu"> 联系人</text>
+    <input type="text" name="linkman" placeholder="请输入联系人"></input>
+  </view>
+  <view class="list">
+    <text class="iconfont iconshouji"> 联系电话</text>
+    <input type="number" name="phone" placeholder="请输入联系电话"></input>
+  </view>
+  <view class="list m-top20">
+    <text class="iconfont icontuandui"> 就餐人数</text>
+    <slider bindchange="people" min="1" max="20" show-value="true" />
+  </view>
+	<textarea name="message" placeholder="请输入备注信息" />
+	<button form-type="submit" disabled="{{disabled}}"> 立即预约 </button>
+</form>

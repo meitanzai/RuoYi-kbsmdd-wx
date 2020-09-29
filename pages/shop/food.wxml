@@ -1,0 +1,92 @@
+<view class='container'>
+  <view class="head {{scrollDown?'hidden':''}}">
+    <view class="shop ">
+      <image class="logo" src="{{shop.logo.file_path}}" />
+      <view class="name">{{shop.shop_name}}</view>
+      <view class="address">营业时间：{{shop.shop_hours}}</view>
+      <view class="address">门店地址：{{shop.address}}</view>
+      
+      <view class="line"></view>
+    </view>
+  </view>
+  <view class="content-container">
+    <scroll-view class="classify-container" scroll-y="true">
+      <view wx:for="{{category}}" wx:for-item="classify" wx:key="id" data-id="{{'id'+classify.category_id}}" id="{{'id'+classify.category_id}}" class="classify {{classifySeleted==classify.category_id?'active':''}}" bindtap="tapClassify">
+        <view class="name">{{classify.name}}</view>
+      </view>
+    </scroll-view>
+    <scroll-view class="goods-container" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="onGoodsScroll">
+      <view class='aaa' wx:for="{{category}}" wx:for-item="classify" id="{{'id'+classify.category_id}}" wx:key="id" data-id="{{'id'+classify.category_id}}">
+        <view class="title">{{classify.name}}</view>
+        <view class="goods" wx:for="{{goods[classify.category_id]}}" wx:key="this">
+          <navigator url="../goods/index?goods_id={{item.goods_id}}" hover-class='navigator-hover'>
+            <image class="pic" src="{{item.thumbnail}}" />
+          </navigator>
+          <view class="name">{{item.goods_name}}</view>
+          <view class="sold">已售：{{item.goods_sales}}份</view>
+          <view class="price">￥{{food_mode==3?item.spec[0].out_price:item.spec[0].goods_price}}</view>
+          <view class="cart-but">
+            <view class="but" bindtap="{{item.spec_type==1?'addCount':'clickme'}}" data-category_id="{{classify.category_id}}" data-index="{{index}}" data-sku-id="{{item.spec[0].spec_sku_id}}">
+              <text class="iconfont iconjiahao1 ico col-l"></text>
+            </view>
+            <view wx:if="{{item.total_num>0}}" class="total-num">{{item.total_num}}</view>
+            <view class="but" wx:if="{{item.total_num>0}}" bindtap="{{item.spec_type==1?'minusCount':'clickme'}}" data-category_id="{{classify.category_id}}" data-index="{{index}}" data-sku-id="{{item.spec[0].spec_sku_id}}">
+              <text class="iconfont iconshanchu1 ico col-9"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='pd'></view>
+    </scroll-view>
+  </view>
+  <view class="cart" bindtap="{{(order_total_num>0 && min_price==0)?'gotoCart':''}}">
+    <view class="data">
+      <view class="icon">
+        <text class="iconfont icongouwuche1"></text>
+        <view class="count">{{order_total_num?order_total_num:''}}</view>
+      </view>
+      <view class="total">￥{{order_total_price}}
+        <text wx:if="{{min_price}}" class="min_price">还差{{min_price}}元起送</text>
+      </view>
+    </view>
+    <view class="cart-tab-item-btn h4 {{(order_total_num>0 && min_price==0)?'btn-bg1':'btn-bg2'}}">
+      {{(order_total_num>0 && min_price==0)?'去结算':'请选单'}}
+    </view>
+  </view>
+</view>
+
+<!--多规格选项-->
+<!--屏幕背景变暗的背景  -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框  -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view style="height:80rpx;"></view>
+  <view class="commodity-navbar-header dis-flex">
+    <view class="goods">
+      <image src="{{goods_img}}"></image>
+      <view class="goods-msg">
+        <view>{{detail.goods_name}}</view>
+        <view style="color:#ff0000;">￥{{food_mode==3?out_price:goods_price}}</view>
+      </view>
+    </view>
+    <view bindtap="hideModal2" class="close">×</view>
+  </view>
+  <view class="taocan clearfix" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
+    <view class="title" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
+    <view class="clearfix">
+      <view wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey" class="{{item.checked?'list2':'list'}}" bindtap="modelTap" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
+    </view>
+  </view>
+
+  <view class="buy_number">
+    <view class="buyNumber f-26">  
+      <text>购买数量</text>
+    </view>
+    <view class="selectNumber">
+      <button bindtap="down" class="default  {{detail.spec[0].sell_num>=1?'':' default-active'}}" type="default">-</button>
+      <input bindinput="import" type="number" value="{{detail.spec[0].sell_num}}" disabled></input>
+      <button bindtap="up" class="default" type="default">+</button>
+    </view>
+  </view>
+  <view class="in-flow" bindtap="hideModal2">确定选择</view>
+</view>

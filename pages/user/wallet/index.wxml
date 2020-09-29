@@ -1,0 +1,30 @@
+<view class="body">
+  <view class="head">
+    <view class="head-box">
+      <view class="head-box-ico">账户余额</view>
+      <view class="head-box-ico">￥{{userInfo.wallet}}</view>
+    </view>
+  </view>
+  <view wx:if="{{plan.length>0}}">
+    <view class="title">充值套餐</view>
+    <view class="clearfix">
+      <view wx:for="{{plan}}" bindtap="setItem" data-money="{{item.money}}" data-recharge_plan_id="{{item.recharge_plan_id}}" data-index="{{index}}" wx:key="this" class="{{tab===index?'plan-box2':'plan-box'}}">
+        <view style="color:#444444;">充{{item.money}}</view>
+        <view class="text">送{{item.gift_money}}</view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <form bindsubmit="recharge">
+      <input type="number" name="money" value="{{money}}" bindfocus="check_input" disabled="{{setting.is_custom==1?false:true}}" placeholder="{{setting.is_custom==1?'请输入充值金额':'只能选择套餐充值'}}"></input>
+      <button form-type="submit" disabled="{{setting.is_open==1?false:true}}">{{setting.is_open==1?'立即充值':'商家未开启'}}</button>
+    </form>
+  </view>
+  <view>
+    <view class="title m-top20">充值说明</view>
+    <view class="title-list">1. 账户充值仅限微信在线支付方式，充值金额实时到账；</view>
+    <view class="title-list">2. 账户充值套餐赠送的金额即时到账；</view>
+    <view class="title-list">3. 账户余额有效期：自充值日起至用完即止；</view>
+    <view class="title-list">4. 若有其它疑问，可拨打客服电话</view>
+  </view>
+</view>

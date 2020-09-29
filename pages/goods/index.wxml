@@ -1,0 +1,88 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+  <view class="container" wx:if="{{detail.goods_id}}">
+    <view bindtap="imgPreview">
+      <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" circular="{{true}}">
+        <swiper-item wx:for="{{detail.image}}" wx:key="this">
+          <image class="slide-image" mode="aspectFill" src="{{item.file_path}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="number-banner">
+        <text>{{currentIndex}}</text>
+        <text>/{{detail.image.length}}</text>
+      </view>
+    </view>
+    <view class="cont-box b-f">
+      <view class="goods-title ">
+        <text class="title f-32 twolist-hidden">{{detail.goods_name}}</text>
+      </view>
+      <view class="money-box">
+        <text class="num">￥{{goods_price}}</text>
+        <text class="del" wx:if="{{line_price>0}}">￥{{line_price}}</text>
+      </view>
+      <view class="goods-sales-box f-28 dis-flex">
+        <text class="flex-box num">销量：{{goods_sales}}</text>
+        <text class="flex-box stock">库存：{{stock_num}}</text>
+      </view>
+    </view>
+
+    <!-- 商品评论 -->
+    <block wx:if="{{goodsComment}}">
+      <view class="cont-box b-f goods-property-box m-top20">
+        <text class="col-3 f-30">评价</text>
+        <text bindtap="toChild" class="comment-num">查看更多</text>
+        <view class="goods-property-jianTou">
+          <text class="iconfont icongengduo user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+      <view class="goods_comment_box b-f">
+        <view class="cont-box goods-comment-box b-t b-f b-b" wx:for="{{goodsComment}}" wx:key="goodsComment">
+          <text class="admin">{{item.name}}</text>
+          <view class="com_xing">
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>0?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>1?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>2?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>3?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>4?'active ':''}}"></text>
+          </view>
+          <view class="goods-comment-cont m-top20">{{item.cont}}</view>
+          <view class="f-22 col-9 m-top10">{{item.time}}</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 商品描述 -->
+    <view class="p-bottom">
+      <view class="top-nav m-top20 b-f b-b">
+        <view class="top-nav-bar">
+          <view bindtap="toOrder" id="top-nav-bar-true">
+            <span>菜品详情</span>
+          </view>
+        </view>
+      </view>
+      <view class="order" hidden="{{hiddenOrder}}">
+        <view wx:if="{{detail.content!=null && detail.content!=''}}">
+          <view class="b-f goods-detail-box">
+            <view class="goods-cont-li">
+              <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+            </view>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="yoshop-notcont">
+            <text class="iconfont"></text>
+            <text class="cont">亲,此处暂无详情数据</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
+  <text class="iconfont iconfanhuidingbu"></text>
+</view>
+
+<!-- 快捷导航 -->
+<shortcut></shortcut>

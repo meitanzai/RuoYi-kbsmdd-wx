@@ -1,0 +1,36 @@
+.list{
+	background: #fff;
+	padding: 20rpx;
+	border-bottom: 1rpx solid #f2f2f2;
+	color: #444;
+	height: 40rpx;
+}
+.list text{
+	width: 200rpx;
+	display: block;
+	float: left;
+}
+.list input{
+	width: 500rpx;
+	float: left;
+}
+.list slider{
+	margin-top: 10rpx;
+	width: 400rpx;
+	float: left;
+}
+textarea{
+	padding: 20rpx;
+	height: 100rpx;
+	width: 100%;
+	background: #fff;
+}
+button{
+	background: #1196DB;
+	color: #fff;
+	width: 200rpx;
+	height: 70rpx;
+	padding: 0rpx;
+	font-size: 28rpx;
+	margin-top: 50rpx;
+}

@@ -1,0 +1,10 @@
+<view class="shortcut">
+
+  <!-- 首页 -->
+  <form bindsubmit="_onTargetPage" report-submit="true">
+    <button formType="submit" data-index="0" class="nav-item btn-normal show_60">
+      <text class="iconfont2 icon-1"></text>
+    </button>
+  </form>
+
+</view>

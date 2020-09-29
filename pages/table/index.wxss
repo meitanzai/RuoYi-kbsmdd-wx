@@ -1,0 +1,55 @@
+
+
+/* 订单导航栏 */
+
+.order-navbar {
+  margin: auto;
+  padding: 15rpx 0;
+  width: 95%;
+  box-shadow: 0 1rpx 5rpx 0px rgba(0, 0, 0, 0.05);
+  font-size: 30rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.order-navbar-header {
+  margin: auto;
+  padding: 0 20rpx 10rpx 20rpx;
+  height: 60rpx;
+  border-bottom: 1px dashed #eee;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-navbar-footer {
+  width: 100%;
+  height: 100%;
+  padding: 10rpx 0px;
+}
+
+.order-navbar-footer .order-navbar-item{
+  float: left;
+  width: 47%;
+  padding: 20rpx 0 20rpx 20rpx;
+  margin-top: 10rpx;
+}
+.order-navbar-footer .order-navbar-item .order-navbar__icon {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  padding: 10rpx 0;
+  color: red;
+  font-size: 36rpx;
+}
+
+.order-navbar-footer .order-navbar-item .order-navbar__name {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+  margin-right: 10rpx;
+}
+
+
+

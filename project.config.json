@@ -1,0 +1,108 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"scopeDataCheck": false,
+		"coverView": true,
+		"es6": true,
+		"postcss": true,
+		"compileHotReLoad": false,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"autoAudits": false,
+		"newFeature": true,
+		"uglifyFileName": false,
+		"uploadWithSourceMap": true,
+		"useIsolateContext": true,
+		"nodeModules": false,
+		"enhance": false,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"showShadowRootInWxmlPanel": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.5",
+	"appid": "wx46422f90133f875e",
+	"projectname": "%E5%8D%95%E5%95%86%E6%88%B7%20-%20%E7%82%B9%E9%A4%90",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "recommender=10001",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "scene=table,1,2",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "YVCYfnYMYNNDgQ94QQmSYMwEWh0yMsyWbCeQDOw3Tv0@cr4dev",
+						"shareKey": "xvzww1MH8eJN1L-whoG5tHNTmgMLU42WxwBaFhjFxIS5OI0hzqwj-8WzmWbgUJ60golG0FZNFXRyTdN2Hadm0A~~"
+					}
+				},
+				{
+					"id": 2,
+					"name": "pages/shop/food",
+					"pathName": "pages/shop/food",
+					"query": "scene=table,1,2",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "YVCYfnYMYNNDgQ94QQmSYMwEWh0yMsyWbCeQDOw3Tv0@cr4dev",
+						"shareKey": "1E1uqg1hQkgRv0Yg_Fg5nSWH28eWyjrHwtPv-aSwl-KSv2oQr2Z7p-62q8FhB9kmOjJ-Crit_96fnzfOwWERJA~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "pages/flow/checkout",
+					"pathName": "pages/flow/checkout",
+					"query": "scene=table,1,2",
+					"scene": null
+				}
+			]
+		}
+	}
+}

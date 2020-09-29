@@ -1,0 +1,17 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view class="article-detail-title b-f">
+  {{detail.article_title}}
+</view>
+<view class="article-detail-title2 b-f">
+  图文类目：{{detail.category.name}}  发布时间：{{detail.create_time}}
+</view>
+<view class="article-detail-content">
+  <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+</view>
+<view class=".article-detail-msg">
+  访问量：{{detail.views}} 
+</view>
+<!-- 返回顶部 -->
+<view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
+  <text class="iconfont iconfanhuidingbu"></text>
+</view>

@@ -1,0 +1,134 @@
+<view wx:if="{{isLogin}}" class="container m-b5">
+  <view class="goods-detail-box">
+    <view class="header f-28 col-3">
+      <view catchtap="bindHeaderTap" class="{{dataType==='0'?'active':''}}" data-type="0">全部订单</view>
+      <view bindtap="bindHeaderTap" class="{{dataType==='10001'?'active':''}}" data-type="10001">餐桌订单</view>
+      <view bindtap="bindHeaderTap" class="{{dataType==='2'?'active':''}}" data-type="2">自取订单</view>
+      <view bindtap="bindHeaderTap" class="{{dataType==='3'?'active':''}}" data-type="3">外卖订单</view>
+    </view>
+    <scroll-view scroll-y="{{true}}">
+      <view class="wrapper">
+        <view wx:if="{{list.length}}">
+          <view class="m-top20 " wx:for="{{list}}" wx:key="this">
+            <view class="order-box b-f">
+              <view class="order-header dis-flex">
+                <view class="flex-box t-l">
+                  <text class="title" wx:if="{{item.table_id>10000}}">#{{item.table.table_name}}#</text>
+									<text class="title" wx:if="{{item.table_id==1}}">餐桌{{item.row_no}}号</text>
+                  <text class="title" wx:if="{{item.table_id==2}}">自取{{item.row_no}}号</text>
+                  <text class="title" wx:if="{{item.table_id==3}}">外卖{{item.row_no}}号</text>
+                </view>
+                <view class="flex-box t-r">
+                  <block wx:if="{{item.order_status.value==1}}">
+                    <text class="cont" wx:if="{{item.pay_status.value==1}}">{{item.pay_status.text}}</text>
+                    <text class="cont" wx:if="{{item.pay_status.value==2 && item.delivery_status.value==1}}">{{item.delivery_status.text}}</text>
+                    <text class="cont" wx:if="{{item.pay_status.value==2 && item.delivery_status.value==2 && item.receipt_status.value==1}}">{{item.receipt_status.text}}</text>
+                    <text class="cont" wx:if="{{item.pay_status.value==2 && item.delivery_status.value==2 && item.receipt_status.value==2}}">{{item.receipt_status.text}}</text>
+                    <text class="cont" wx:if="{{item.pay_status.value==2 && item.delivery_status.value==2 && item.receipt_status.value==3}}">{{item.receipt_status.text}}</text>
+                  </block>
+                  <block wx:else>
+                    <text class="cont">{{item.order_status.text}}</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+            <view class="order-box b-f">
+              <view class="order-cont dis-flex">
+                <view class="order-num">
+                  <text>订单号：{{item.order_no}}</text>
+                </view>
+                <view class="order-time">
+                  <text>{{item.create_time}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="order-box order-img_list">
+              <view class="order-shop">
+                <view bindtap="detail" class="order-list-box dis-flex" data-id="{{item.order_id}}">
+                  <view class="left">
+                    <view class="dis-flex">
+                      <view class="order-shop-left" wx:for="{{item.goods}}" wx:key="goods">
+                        <image src="{{item.thumbnail}}"></image>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="right p-r">
+                    <text class="goods-number">共{{item.goods.length}}份</text>
+                    <text class="iconfont icongengduo user-orderJtou"></text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="order-box b-f">
+              <view class="order-btn dis-flex">
+                <view class="order-left">
+                  <view class="text">
+                    <text>合计：</text>
+                    <text class="col-m">￥{{item.pay_price}}</text>
+                  </view>
+                </view>
+                <view class="order-right">
+                  <view class="dis-flex">
+                    <view class="flex-box" wx:if="{{item.pay_status.value==1 && item.order_status.value==1}}">
+                      <view bindtap="cancelOrder" class="btn-default" data-id="{{item.order_id}}">取消</view>
+                    </view>
+                    <view class="" wx:if="{{item.pay_status.value==1 && item.order_status.value==1}}">
+                      <view bindtap="clickme" class="btn-main" data-id="{{item.order_id}}">付款</view>
+                    </view>
+                    <view class="flex-box" wx:if="{{item.delivery_status.value==2 && item.receipt_status.value == 3 && item.order_status.value==1}}">
+                      <view bindtap="receipt" class="btn-main" data-id="{{item.order_id}}">确认完成</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="yoshop-notcont">
+            <text class="iconfont"></text>
+            <text class="cont">亲，您还没有订单信息哦！</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view wx:else>
+  <view class="yoshop-notcont">
+    <text class="iconfont iconjinggao"></text>
+    <text class="cont">亲，您还没有登录哦</text>
+    <view catchtap="onLogin" class="flow-btn-min">点此登录</view>
+  </view>
+</view>
+<!-- 技术支持 -->
+<view class="jishu m-top20">
+  <text class="ico iconfont iconkaibin"></text>
+  <view class="text">{{copyright}}</view>
+</view>
+<!--屏幕背景变暗的背景  -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框  -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view class="commodity-navbar-header dis-flex">
+    <text class="f-30">请选择支付方式</text>
+    <view bindtap="hideModal" class="dis-flex flex-y-center">
+      <text style="color:#999;font-size:50rpx;">×</text>
+    </view>
+  </view>
+  <!--选项  -->
+  <view class="commodity_attr_box_body">
+    <view bindtap="payOrder" data-pay_mode="0" class="list">
+      <view>
+        <text class="ico iconfont iconweixinzhifu col-green"></text>
+      </view>
+      <view>微信支付</view>
+    </view>
+    <view bindtap="payOrder" data-pay_mode="1" class="list">
+      <view>
+        <text class="ico iconfont iconqiandai1 col-h"></text>
+      </view>
+      <view>余额支付</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="container">
+    <!-- 我的服务 -->
+    <view class="order-navbar">
+      <view class="order-navbar-header dis-flex">
+        <text class="f-30">请选择餐桌/包间</text>
+      </view>
+
+      <view class="order-navbar-footer clearfix">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <radio class="order-navbar-item" wx:for="{{list}}" wx:key="this" value="{{item.table_id}}" checked="{{item.table_id==table_id?'checked':''}}">
+             <text class="order-navbar__name">{{item.table_name}}</text>
+          </radio>
+        </radio-group>
+
+      </view>
+    </view>
+  <!-- 技术支持 -->
+<view class="jishu m-top20">
+  <text class="ico iconfont iconkaibin"></text>
+  <view class="text">{{copyright}}</view>
+</view>
+</view>

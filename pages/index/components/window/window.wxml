@@ -1,0 +1,23 @@
+<!-- 图片橱窗 -->
+<view style="overflow:hidden;width:100%;background:{{item.style.background}};">
+  <block wx:if="{{item.style.layout == '-1'}}">
+     <navigator hover-class="none" url="/{{item.data[0].linkUrl}}">
+        <image mode="widthFix" style="border-radius:{{item.style.borderRadius}}rpx;width:{{(750-item.style.paddingLeft*3*2)/2}}rpx;margin-top:{{item.style.paddingTop*2}}rpx;margin-left:{{item.style.paddingLeft*2}}rpx;float:left;" src='{{item.data[0].imgUrl}}'></image>
+     </navigator>
+     <navigator hover-class="none" url="/{{item.data[1].linkUrl}}">
+        <image mode="widthFix" style="border-radius:{{item.style.borderRadius}}rpx;width:{{(750-item.style.paddingLeft*3*2)/2}}rpx;margin-top:{{item.style.paddingTop*2}}rpx;margin-left:{{item.style.paddingLeft*2}}rpx;float:left;" src='{{item.data[1].imgUrl}}'></image>
+     </navigator>
+     <navigator hover-class="none" url="/{{item.data[2].linkUrl}}">
+        <image mode="widthFix" style="border-radius:{{item.style.borderRadius}}rpx;width:{{(750-item.style.paddingLeft*3*2)/4-item.style.paddingLeft*2}}rpx;margin-top:{{item.style.paddingTop*2}}rpx;margin-left:{{item.style.paddingLeft*3}}rpx;float:left;" src='{{item.data[2].imgUrl}}'></image>
+     </navigator>
+     <navigator hover-class="none" url="/{{item.data[3].linkUrl}}">
+        <image mode="widthFix" style="border-radius:{{item.style.borderRadius}}rpx;width:{{(750-item.style.paddingLeft*3*2)/4-item.style.paddingLeft*2}}rpx;margin-top:{{item.style.paddingTop*2}}rpx;margin-left:{{item.style.paddingLeft*3}}rpx;float:left;" src='{{item.data[3].imgUrl}}'></image>
+     </navigator>
+  </block>
+  <block wx:else>
+     <navigator hover-class="none" wx:for-item="window" wx:for="{{item.data}}" wx:for-index="window_key" wx:key="this" url="/{{window.linkUrl}}">
+        <image mode="widthFix" style="border-radius:{{item.style.borderRadius}}rpx;width:{{(750-item.style.paddingLeft*item.style.layout*2-item.style.paddingLeft*2)/item.style.layout}}rpx;margin-top:{{item.style.paddingTop*2}}rpx;margin-left:{{item.style.paddingLeft*2}}rpx;float:left;" src='{{window.imgUrl}}'></image>
+     </navigator>
+  </block>
+</view>
+<view style='background:{{item.style.background}};height:{{item.style.paddingTop*2}}rpx;clear: both;'></view>

@@ -1,0 +1,195 @@
+/* banner组件 */
+@import "components/banner/banner.wxss";
+/* 单图组 */
+@import "components/imageSingle/imageSingle.wxss";
+/* 图片橱窗 */
+@import "components/window/window.wxss";
+/* 视频组 */
+@import "components/video/video.wxss";
+/* 文章组 */
+@import "components/article/article.wxss";
+/* 头条快报 */
+@import "components/special/special.wxss";
+/* 公告组 */
+@import "components/notice/notice.wxss";
+/* 导航组 */
+@import "components/navBar/navBar.wxss";
+/* 商品组 */
+@import "components/goods/goods.wxss";
+/* 在线客服 */
+@import "components/service/service.wxss";
+/* 富文本 */
+@import "components/richText/richText.wxss";
+/* 辅助空白 */
+@import "components/blank/blank.wxss";
+/* 辅助线 */
+@import "components/guide/guide.wxss";
+/* 线下门店 */
+@import "components/shop/shop.wxss";
+
+.shop-detail{
+	padding: 20rpx;
+	background: #fff;
+	color: #666;
+	font-size: 26rpx;
+}
+/*点餐选项 - 使屏幕变暗  */
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+/*点餐选项 - 对话框 */
+.commodity_attr_box {
+  height: 300rpx;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+  margin: auto;
+}
+.commodity-navbar-header {
+  margin: auto;
+  padding: 0 20rpx 10rpx 20rpx;
+  height: 60rpx;
+  border-bottom: 1px dashed #eee;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commodity-ico-box{
+  background-color: #F2F2F2;
+  border-radius: 10rpx;
+  text-align: center;
+  width: 80%;
+	max-width:200rpx;
+  margin: auto;
+  padding: 20rpx 0;
+  margin-top: 20rpx;
+}
+.commodity-navbar__icon {
+  margin: 0 auto;
+  display: block;
+  padding: 10rpx 0;
+  color: #1196DB;
+  font-size: 60rpx;
+}
+.commodity-navbar__name {
+  display: block;
+  font-size: 24rpx;
+  color: #1196DB;
+  margin-right: 10rpx;
+}
+/*弹出层*/
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6)
+}
+ 
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  height: 400rpx;
+  z-index: 1001;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+}
+.modal .userinfo-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin: 30rpx auto;
+}
+.modal .user-header-cont-name{
+  color: red;
+}
+.modal .but{
+  margin-top: 20rpx;
+  width: 60%;
+  color: #fff;
+  background-color: red;
+}
+
+/* 收藏提醒 */
+.top{
+  padding: 0 20rpx 0 20rpx;
+}
+.topsanjiao{
+  float: right;
+  width: 0; 
+  
+  height: 0; 
+  border-left: 20rpx solid transparent; 
+  border-right: 20rpx solid transparent; 
+  border-bottom: 20rpx solid #FFE9BB; 
+  opacity: 0.5;
+  margin-right: 100rpx;
+}
+.setico-b{
+  font-weight: bolder;
+  color: #000;
+}
+.zhuomian{
+  background-color: #FFF0D0;
+  color:#666;
+  font-size: 25rpx;
+  line-height: 50rpx;
+  vertical-align: middle;
+  padding: 10rpx;
+  border-radius:8rpx;
+}
+.top-meno{
+  float: left;
+  width: 60rpx;
+  height: 40rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-top: 5rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  padding-left: 20rpx;
+}
+.top-meno-x{
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background-color: #000000;
+  float: left;
+  margin-top: 17rpx;
+  margin-right: 5rpx;
+}
+.clos-x{
+  width: 50rpx;
+  font-size: 40rpx;
+  float: right;
+  text-align: center;
+}
+.top-meno-d{
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #000000;
+  float: left;
+  margin-top:13rpx;
+  margin-right: 5rpx;
+}

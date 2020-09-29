@@ -1,0 +1,9 @@
+<!-- 文章组 -->
+<view class="article-item {{idx>0?'m-top20':''}}" wx:for-item="list" wx:for-index="idx" wx:for="{{item.data}}" wx:key="this">
+  <navigator open-type="navigateTo" url="/pages/article/detail?article_id={{list.article_id}}">
+    <image src="{{list.image}}"></image>
+    <view class="item-title">{{list.article_title}}</view>
+		 <view class="item-vist">日期：{{list.create_time}}</view>
+    <view class="item-vist">浏览：{{list.views_num}}次</view>
+  </navigator>
+</view>

@@ -1,0 +1,9 @@
+{
+  "extEnable": true,
+  "extAppid": "wx00c08f3e9e2b3ffb",
+  "directCommit": false,
+  "ext": {
+    "uniacid": "10001",	
+		"api_root":"https://www.hemaphp.com/"
+  }
+}

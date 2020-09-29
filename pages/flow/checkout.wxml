@@ -1,0 +1,182 @@
+<view class="container p-bottom">
+ 
+  <!-- 店内就餐-桌号 -->
+  <block wx:if="{{food_mode == 1 || food_mode > 10000}}">
+    <block wx:if="{{shop.tang_mode==1}}">
+      <view class="section_gap">
+        <view class="section_title">滑动选择就餐人数</view>
+        <view class="body-view">
+          <slider bindchange="slider" max="20" show-value/>
+        </view>
+      </view>
+      <view catchtap="selectTable">
+        <view class="flow-checkout-header">
+          <view class="flow-header-left f-28 col-6">
+            <text class="iconfont iconcanzhuo"></text> {{table.table_name}}
+            <text class="iconfont icongengduo gengduo"></text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+  <!-- 打包带走 -->
+  <view wx:if="{{food_mode==2}}">
+    <view class="flow-checkout-header">
+		<picker header-text="选择到店时间" mode="time" start="08:00" end="23:00" bindchange="bindTimeChange">
+    <view class="picker">
+			<view class="flow-header-left f-28 col-6">
+        <text class="iconfont iconshijian"> </text> 到店时间: {{arrive_time}}
+        <text class="iconfont icongengduo gengduo"></text>
+      </view>
+    </view>
+  </picker>
+    </view>
+  </view>
+  <!-- 外卖-配送地址 -->
+  <view wx:if="{{food_mode==3}}" catchtap="selectAddress">
+    <view wx:if="{{address.address_id}}">
+      <view class="b-f">
+        <view class="flow-checkout-header">
+          <view class="user-address">
+            <text class="iconfont iconwaimai1 zuo-ico f-40 col-6 m-top20"></text>
+            <view class="user-address-detail">
+              <text class="f-30 col-3">{{address.name}} {{address.phone}}</text>
+              <text class="flow-checkout-address">
+							{{address.province}} {{address.city}} {{address.district}} {{address.detail}}</text>
+            </view>
+            <text class="iconfont icongengduo gengduo f-40 col-6 m-top20"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="flow-checkout-header">
+        <view class="flow-header-left f-28 col-6">
+          <text class="iconfont iconweizhi"></text> 去选择配送地址
+          <text class="iconfont icongengduo gengduo"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class="m-top20">
+    <view class="checkout_list " wx:for="{{goods_list}}" wx:key="this">
+      <navigator url="../goods/index?goods_id={{item.goods_id}}">
+        <view class="dis-flex flow-shopList" data-index="{{index}}">
+          <view class="flow-list-left">
+            <image mode="scaleToFill" src="{{item.thumbnail}}"></image>
+          </view>
+          <view class="flow-list-right">
+            <text class="f-30 col-3 twolist-hidden">{{item.goods_name}}</text>
+            <text class="f-26 col-7">{{item.goods_attr}}</text>
+            <view class="flow-list-cont">
+              <text class="flow-cont">￥{{item.goods_price}}</text>
+              <text class="small">×{{item.total_num}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="flow-num-box b-f padding-box">
+      <text>共{{order_total_num}}件商品，合计：</text>
+
+      <text class="flow-money col-m">￥{{order_total_price}}</text>
+    </view>
+  </view>
+
+  <!-- 商品金额 -->
+  <view class="flow-all-money b-f padding-box m-top20">
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">商品总金额:</text>
+      <view class="flex-five t-r">
+        <text class="col-m">￥{{order_total_price}}</text>
+      </view>
+    </view>
+    <view wx:if="{{food_mode==1 || food_mode>10000}}" class="dis-flex flow-all-list">
+      <text class="flex-five">餐具调料费:</text>
+      <view class="flex-five t-r">
+        <text class="col-m">+￥{{ware_price}}</text>
+      </view>
+    </view>
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">优惠金额:</text>
+      <view class="flex-five t-r">
+        <view>
+          <text class="col-m">-￥{{activity_price}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{food_mode==2 || food_mode==3}}" class="dis-flex flow-all-list">
+      <text class="flex-five">餐盒费用:</text>
+      <view class="flex-five t-r">
+        <view>
+          <text class="col-m">+￥{{pack_price}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{food_mode==3}}" class="dis-flex flow-all-list">
+      <text class="flex-five">配送费用:</text>
+      <view class="flex-five t-r">
+        <view>
+          <text class="col-m" wx:if="{{intra_region}}">+￥{{express_price}}</text>
+          <text wx:else>不在配送范围</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <form bindsubmit="submitOrder">
+    <!-- 口味选择 -->
+    <view class="menus-list m-top20">
+      <view class="menus-item dis-flex b-f">
+        <view class="menus-item__left flex-box dis-flex flex-y-center">
+          <text class="menus-item__name f-30">口味选择</text>
+        </view>
+      </view>
+      <view class="flavor clearfix" wx:if="{{flavor_list.length>0}}">
+        <text class="flavor-ico clearfix {{item.checked?'check2':'check1'}}" bindtap="flavor" wx:for="{{flavor_list}}" wx:key="this" data-index="{{index}}">{{item.name}}</text>
+      </view>
+      <view class="message">
+        <input name="message" placeholder="选填：买家留言（50字以内）" maxlength="50"></input>
+      </view>
+    </view>
+    <!-- 支付方式 -->
+    <view class="menus-list m-top20">
+      <view class="menus-item dis-flex b-f">
+        <view class="menus-item__left flex-box dis-flex flex-y-center">
+          <text class="menus-item__name f-30">支付方式</text>
+        </view>
+      </view>
+      <view class="menus-item dis-flex b-f" bindtap="setPay" data-pay_mode="0">
+        <view class="menus-item__left flex-box dis-flex flex-y-center">
+          <text class="ico iconfont iconweixinzhifu col-green"></text>
+          <text class="menus-item__name f-30">微信支付</text>
+        </view>
+        <view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+          <text class="red iconfont {{pay_mode==0?'iconduihao':''}} f-30"></text>
+        </view>
+      </view>
+      <view class="menus-item dis-flex b-f" bindtap="setPay" data-pay_mode="1">
+        <view class="menus-item__left flex-box dis-flex flex-y-center">
+          <text class="ico iconfont iconqiandai1 col-h"></text>
+          <text class="menus-item__name f-30">余额支付</text>
+        </view>
+        <view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+          <text class="red iconfont {{pay_mode==1?'iconduihao':''}} f-30"></text>
+        </view>
+      </view>
+    </view>
+    <!-- 提交订单 -->
+    <view class="flow-fixed-footer b-f m-top10">
+      <view class="dis-flex chackout-box">
+        <view class=" chackout-left pl-12 ">实付款：
+          <text class="col-m">￥{{order_pay_price}}</text>
+        </view>
+        <view class="chackout-right">
+          <button class="flow-submit" form-type="submit">提交订单</button>
+        </view>
+      </view>
+    </view>
+  </form>
+  <!-- 快捷导航 -->
+  <shortcut></shortcut>
+</view>

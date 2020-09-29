@@ -1,0 +1,22 @@
+.article-detail-title {
+  padding: 10rpx 20rpx;
+	color: #444;
+}
+.article-detail-title2 {
+  padding: 10rpx 20rpx;
+	color: #ccc;
+	font-size: 22rpx;
+}
+.article-detail-msg {
+  background: #fff;
+  padding: 0rpx 20rpx;
+  font-size: 22rpx;
+  color: #ccc;
+  line-height: 80rpx;
+  vertical-align: middle;
+  text-align: right;
+}
+.article-detail-content {
+  background: #fff;
+  padding:20rpx;
+}

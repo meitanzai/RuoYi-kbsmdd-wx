@@ -1,0 +1,29 @@
+/*  文章组  */
+
+.article-item {
+  height: 188rpx;
+  background: #fff;
+  padding: 20rpx;
+}
+
+.article-item .item-title {
+  height: 120rpx;
+  width: 400rpx;
+  float: left;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.article-item .item-vist {
+  height: 30rpx;
+  width: 400rpx;
+  float: left;
+  font-size: 22rpx;
+  color: #999;
+}
+
+.article-item image {
+  width: 300rpx;
+  height: 188rpx;
+  float: right;
+}

@@ -1,0 +1,5 @@
+<!-- 视频组 -->
+<view style='padding:{{item.style.paddingTop}}px 0px;background:#fff;text-align:center;'>
+  <video style='width:100%;height:{{item.style.height}}px;vertical-align: bottom;' src="{{item.params.videoUrl}}" autoplay="{{item.params.autoplay==0?false:true}}" poster="{{item.params.poster}}" loop="true" enable-play-gesture="true" object-fit="fill" controls="true" play-btn-position="center" custom-cache="{{false}}"> 
+  </video>
+</view>

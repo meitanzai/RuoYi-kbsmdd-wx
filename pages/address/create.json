@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "新增我的地址",
+    "usingComponents": {
+      "shortcut": "/components/shortcut/shortcut"
+    }
+}
